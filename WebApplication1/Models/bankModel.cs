@@ -5,7 +5,7 @@ public class User
     public string Name { get; set; }
     public string Email { get; set; }    
 
-    public List<Account> Accounts = new List<Account>();
+    public List<Account> Accounts { get; set;} = new List<Account>();
 
 }
 
@@ -15,7 +15,7 @@ public class Account
     public string AccountName { get; set; }
     public decimal Balance { get; set; }
 
-    public List<Transaction> Transactions = new List<Transaction>();
+    public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
     public void addTransaction(Transaction transaction){
 
