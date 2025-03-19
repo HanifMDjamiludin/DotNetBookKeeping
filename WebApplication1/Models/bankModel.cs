@@ -9,6 +9,16 @@ public class User
 
 }
 
+public class BusinessUser : User
+{
+    public int calculateTax()
+    {
+        return 1;
+    }
+    
+}
+
+
 public class Account 
 {
     public int AccountID {get; set;}

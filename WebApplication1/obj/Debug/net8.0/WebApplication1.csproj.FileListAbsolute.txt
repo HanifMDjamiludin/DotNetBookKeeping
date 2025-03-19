@@ -28,3 +28,4 @@
 /Users/hanif/Documents/dotNetFirst/WebApplication1/obj/Debug/net8.0/WebApplication1.pdb
 /Users/hanif/Documents/dotNetFirst/WebApplication1/obj/Debug/net8.0/WebApplication1.genruntimeconfig.cache
 /Users/hanif/Documents/dotNetFirst/WebApplication1/obj/Debug/net8.0/ref/WebApplication1.dll
+/Users/hanif/Documents/dotNetFirst/WebApplication1/obj/Debug/net8.0/WebApplication1.sourcelink.json
