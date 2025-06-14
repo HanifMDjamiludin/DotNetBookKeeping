@@ -1,0 +1,104 @@
+@model WebApplication1.Models.Entities.Transaction
+@using WebApplication1.Models.Entities
+
+@{
+    ViewData["Title"] = "Create Transaction";
+}
+
+<div class="container mt-4">
+    <h2>Create New Transaction</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <div class="mb-3">
+                    <label asp-for="Date" class="form-label">Date</label>
+                    <input asp-for="Date" class="form-control" type="date" required />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <input asp-for="Description" class="form-control" required />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Amount" class="form-label">Amount</label>
+                    <input asp-for="Amount" class="form-control" type="number" step="0.01" required />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccountID" class="form-label">Account</label>
+                    <select asp-for="AccountID" class="form-select" required>
+                        <option value="">Select an account</option>
+                        @foreach (var account in ViewBag.Accounts)
+                        {
+                            <option value="@account.AccountID">@account.AccountName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="AccountID" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CategoryId" class="form-label">Category</label>
+                    <select asp-for="CategoryId" class="form-select" required>
+                        <option value="">Select a category</option>
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            <option value="@category.CategoryId">@category.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Type" class="form-label">Transaction Type</label>
+                    <select asp-for="Type" class="form-select" required>
+                        <option value="@TransactionType.Income">Income</option>
+                        <option value="@TransactionType.Expense">Expense</option>
+                    </select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input asp-for="IsRecurring" class="form-check-input" type="checkbox" />
+                        <label asp-for="IsRecurring" class="form-check-label">Is Recurring</label>
+                    </div>
+                </div>
+
+                <div class="mb-3" id="recurrenceIntervalGroup" style="display: none;">
+                    <label asp-for="RecurrenceInterval" class="form-label">Recurrence Interval</label>
+                    <select asp-for="RecurrenceInterval" class="form-select">
+                        <option value="@RecurrenceInterval.Daily">Daily</option>
+                        <option value="@RecurrenceInterval.Weekly">Weekly</option>
+                        <option value="@RecurrenceInterval.Monthly">Monthly</option>
+                        <option value="@RecurrenceInterval.Yearly">Yearly</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const isRecurringCheckbox = document.getElementById('IsRecurring');
+            const recurrenceIntervalGroup = document.getElementById('recurrenceIntervalGroup');
+
+            isRecurringCheckbox.addEventListener('change', function() {
+                recurrenceIntervalGroup.style.display = this.checked ? 'block' : 'none';
+            });
+        });
+    </script>
+} 
